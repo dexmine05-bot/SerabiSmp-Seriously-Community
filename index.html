@@ -1,52 +1,101 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Bakwan SMP</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
-      text-align: center;
-    }
-    .hero {
-      padding: 80px 20px;
-    }
-    h1 {
-      font-size: 48px;
-      color: #ffcc00;
-    }
-    p {
-      max-width: 600px;
-      margin: auto;
-      opacity: 0.9;
-    }
-    .btn {
-      display: inline-block;
-      margin: 15px;
-      padding: 15px 30px;
-      background: #ffcc00;
-      color: black;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-    }
-    .btn:hover {
-      background: #e6b800;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SerabiSMP | Community</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #ffcc00;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            color: #cccccc;
+            margin-bottom: 30px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            background: #ffcc00;
+            color: black;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.3);
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="hero">
-    <h1>BAKWAN SMP</h1>
-    <p>Server Minecraft nostalgia, tempat main bareng, berteman, dan seru-seruan.</p>
+    <div class="container">
+        <img src="https://via.placeholder.com/150" alt="Logo" class="logo">
+        
+        <h1>BAKWAN SMP</h1>
+        <p>Selamat datang di portal resmi komunitas kami!</p>
 
-    <a class="btn" href="#">JOIN DISCORD</a>
-    <a class="btn" href="#">IP SERVER</a>
-  </div>
+        <div class="links">
+            <a href="#" class="btn">Join Discord Kami</a>
+            <a href="#" class="btn">IP Address Server</a>
+            <a href="#" class="btn">Donasi & Store</a>
+            <a href="#" class="btn">Instagram</a>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Serabi Community. All Rights Reserved.
+        </div>
+    </div>
 
 </body>
 </html>
