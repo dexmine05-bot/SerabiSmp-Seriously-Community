@@ -3,98 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SerabiSMP | Community</title>
+    <title>SerabiSMP | Serabi Community</title>
     <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
-            color: white;
-            text-align: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navigasi Atas */
+        nav {
+            background: white;
+            padding: 15px 5%;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .container {
-            padding: 20px;
-            max-width: 600px;
-        }
-
-        .logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid #ffcc00;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(255, 204, 0, 0.5);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        p {
-            color: #cccccc;
-            margin-bottom: 30px;
-        }
-
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-        }
-
-        .btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            text-decoration: none;
-            padding: 15px 25px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: 0.3s;
+        .logo-text {
             font-weight: bold;
-            backdrop-filter: blur(5px);
+            font-size: 1.5rem;
+            color: #e67e22; /* Warna Oranye Bakwan */
         }
 
-        .btn:hover {
-            background: #ffcc00;
-            color: black;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 204, 0, 0.3);
+        /* Hero Section */
+        .hero {
+            background-color: #fff;
+            padding: 60px 10%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 10px solid #e67e22;
         }
 
-        .footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #666;
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            color: #e67e22;
+            margin-bottom: 10px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+        }
+
+        /* Section About */
+        .about {
+            padding: 50px 10%;
+            text-align: center;
+            background: white;
+        }
+
+        .about h2 {
+            border-bottom: 3px solid #e67e22;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        /* Footer Running Text Style */
+        .running-text {
+            background: #e67e22;
+            color: white;
+            padding: 10px 0;
+            font-weight: bold;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <img src="https://via.placeholder.com/150" alt="Logo" class="logo">
-        
-        <h1>BAKWAN SMP</h1>
-        <p>Selamat datang di portal resmi komunitas kami!</p>
+    <nav>
+        <div class="logo-text">BAKWAN.ID CLONE</div>
+        <div>HOME | CONTENT | TEAM | TOPUP</div>
+    </nav>
 
-        <div class="links">
-            <a href="#" class="btn">Join Discord Kami</a>
-            <a href="#" class="btn">IP Address Server</a>
-            <a href="#" class="btn">Donasi & Store</a>
-            <a href="#" class="btn">Instagram</a>
+    <div class="hero">
+        <div class="hero-image">
+            <img src="https://cdn.discordapp.com/attachments/1413036583761875016/1460431475810893947/20260103_195716.jpg?ex=6966e44d&is=696592cd&hm=bb3ba823725c38470bdcc68282da59a25eb0d4ef04ef27cb66f85e12f3f9d41f&" alt="Mascot">
         </div>
+        <div class="hero-text">
+            <h1>SELAMAT DATANG DI BAKWAN</h1>
+            <p>DI MANA <strong>KEUNIKAN</strong>, <strong>KREATIVITAS</strong> DAN <strong>PETUALANGAN</strong> MENJADI SATU.</p>
+        </div>
+    </div>
 
-        <div class="footer">
-            &copy; 2026 Serabi Community. All Rights Reserved.
-        </div>
+    <div class="running-text">
+        <marquee>OUR TEAM • OUR TEAM • OUR TEAM • OUR TEAM • OUR TEAM</marquee>
+    </div>
+
+    <div class="about">
+        <h2>ABOUT</h2>
+        <p>Selamat datang di portal utama bagi kalian para penikmat komunitas kami. Di sini kami menyajikan segala informasi terkait server dan kegiatan seru lainnya!</p>
+    </div>
+
+    <div style="text-align: center; padding: 20px; color: #888;">
+        © 2026 Serabi Community
     </div>
 
 </body>
