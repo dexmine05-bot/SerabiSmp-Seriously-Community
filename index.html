@@ -3,190 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SerabiSMP | Community Portal</title>
+    <title>SerabiSMP | Official Website</title>
     <style>
-        /* Dasar & Font */
         body {
             margin: 0;
             font-family: 'Arial Black', Gadget, sans-serif;
             background-color: #ffffff;
             color: #333;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Top Bar Kecil (Merah/Oranye) */
-        .top-header {
-            background: #e67e22;
-            height: 30px;
-            width: 100%;
-        }
-
-        /* Navigasi Utama */
+        /* Navigasi & Header */
+        .top-orange { background: #e67e22; height: 35px; width: 100%; }
         nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            background: white;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: white; position: sticky; top: 0; z-index: 100;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        }
+        .logo { font-size: 24px; color: #e67e22; font-weight: bold; }
+        .menu a { margin-left: 20px; text-decoration: none; color: #333; font-size: 14px; font-weight: bold; }
+
+        /* Hero & About Section */
+        .hero { display: flex; flex-wrap: wrap; padding: 50px 10%; align-items: center; background: #fff; }
+        .hero-img { flex: 1; text-align: center; }
+        .hero-img img { max-width: 80%; border-radius: 20px; }
+        .hero-text { flex: 1; padding: 20px; }
+        .hero-text h1 { color: #e67e22; font-size: 2.5rem; margin-bottom: 10px; }
+
+        .about-box { padding: 60px 10%; background: #f9f9f9; text-align: center; }
+        .about-box h2 { font-size: 2rem; border-bottom: 4px solid #e67e22; display: inline-block; margin-bottom: 20px; }
+        .about-content { max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif; font-size: 1.1rem; }
+
+        /* Players Section */
+        .players-section { padding: 50px 5%; background: #fff; text-align: center; }
+        .section-bar { background: #333; color: white; padding: 10px; font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 40px; }
+        
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+            padding: 20px;
         }
 
-        .logo {
-            font-size: 24px;
-            color: #e67e22;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .menu a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Hero Section (Mirip Bakwan.id) */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            padding: 50px 10%;
-            background-image: radial-gradient(#fdf2e9 2px, transparent 2px);
-            background-size: 30px 30px; /* Efek titik-titik di background */
-        }
-
-        .hero-img {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-        }
-
-        .hero-img img {
-            max-width: 80%;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
-        }
-
-        .hero-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .hero-text h1 {
-            font-size: 2.5rem;
-            line-height: 1.1;
-            color: #333;
-        }
-
-        .highlight {
-            color: #e67e22;
-        }
-
-        /* Running Text (OUR TEAM) */
-        .running-text {
-            background: #e67e22;
-            color: white;
-            padding: 10px 0;
-            white-space: nowrap;
-            font-size: 1.2rem;
-            border-top: 4px solid #d35400;
-            border-bottom: 4px solid #d35400;
-        }
-
-        /* Section Konten & Server */
-        .section-title {
-            text-align: center;
-            margin-top: 50px;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-        }
-
-        .grid-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            padding: 40px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            text-align: center;
+        .player-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
             transition: 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
 
-        .card:hover {
-            transform: scale(1.1);
-        }
-
-        .card img {
-            width: 150px;
-            height: auto;
-            margin-bottom: 10px;
-        }
+        .player-card:hover { transform: translateY(-10px); border-color: #e67e22; }
+        .player-img { width: 100%; height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .player-img img { width: 100%; height: 100%; object-fit: cover; }
+        .player-name { padding: 15px; font-weight: bold; background: #f4f4f4; color: #e67e22; }
 
         /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px;
-            font-size: 12px;
-            color: #888;
-            border-top: 1px solid #eee;
-        }
+        .running-text { background: #e67e22; color: white; padding: 10px 0; font-weight: bold; }
+        footer { text-align: center; padding: 30px; color: #888; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
-    <div class="top-header"></div>
-
+    <div class="top-orange"></div>
     <nav>
-        <div class="logo">SERABISMPComunity</div>
+        <div class="logo">SERABISMP.ID</div>
         <div class="menu">
             <a href="#">HOME</a>
             <a href="#">CONTENT</a>
             <a href="#">TEAM</a>
+            <a href="#">PLAYERS</a>
         </div>
     </nav>
 
     <div class="hero">
         <div class="hero-img">
-            <img src="https://cdn.discordapp.com/attachments/1413036583761875016/1460431475810893947/20260103_195716.jpg?ex=6966e44d&is=696592cd&hm=bb3ba823725c38470bdcc68282da59a25eb0d4ef04ef27cb66f85e12f3f9d41f&" alt="Serabi Character">
+            <img src="https://via.placeholder.com/400x400.png?text=SERABI+MASCOT" alt="Mascot">
         </div>
         <div class="hero-text">
-            <h1>SELAMAT DATANG DI <span class="highlight">SERABISMP</span> : DI MANA <span class="highlight">KEUNIKAN</span>, <span class="highlight">KREATIVITAS</span> DAN <span class="highlight">PETUALANGAN</span> MENJADI SATU.</h1>
+            <h1>SELAMAT DATANG DI SERABISMP</h1>
+            <p>Di mana <strong>Persahabatan</strong> dan <strong>Petualangan</strong> Minecraft dimulai!</p>
+        </div>
+    </div>
+
+    <div class="about-box">
+        <h2>ABOUT SERVER</h2>
+        <div class="about-content">
+            <p>"SerabiSMP" adalah sebuah server Minecraft roleplay yang dibangun untuk menciptakan komunitas yang solid dan kreatif. Kami berfokus pada pengalaman bermain yang seru, menghargai setiap karya pemain, dan menjunjung tinggi sportivitas antar member. Jelajahi dunia kami dan jadilah bagian dari sejarah Serabi Universe!</p>
         </div>
     </div>
 
     <div class="running-text">
-        <marquee scrollamount="10">Dexmc • Ghafahib • Singdc • KupretKentut • Diamondzmc • OUR TEAM • OUR TEAM</marquee>
+        <marquee scrollamount="12">OUR PLAYERS • OUR PLAYERS • OUR PLAYERS • OUR PLAYERS • OUR PLAYERS</marquee>
     </div>
 
-    <div class="section-title">CONTENT</div>
-    <div class="grid-container">
-        <div class="card">
-            <img src="https://cdn.discordapp.com/attachments/1388342161254252695/1455791907572682848/20251231_121652.jpg?ex=69667e1e&is=69652c9e&hm=5ac35c29ce729226a6c2f9edd7b728485464a7d2aea7281f4520cb237a19aca9&" alt="Logo SMP">
-            <div>SerabiSMPSeriously</div>
-        </div>
-        <div class="card">
-            <img src="https://cdn.discordapp.com/attachments/1413036583761875016/1460434680674390170/pixelcreate_1.png?ex=6966e749&is=696595c9&hm=6ca380d986fde7a32c5c4c6e0fc2ae5d085e24c5069be3cb122cc079845126d2&" alt="Logo Fight">
-            <div>SerabiSMP Comunity</div>
-        </div>
-    </div>
-
-    <div class="section-title">SERVER</div>
-    <div class="grid-container">
-        <div class="card">
-            <img src="https://cdn.discordapp.com/attachments/1413036583761875016/1460431475810893947/20260103_195716.jpg?ex=6966e44d&is=696592cd&hm=bb3ba823725c38470bdcc68282da59a25eb0d4ef04ef27cb66f85e12f3f9d41f&" alt="Server Saga">
+    <div class="players-section">
+        <div class="section-bar">PLAYERS</div>
+        <div class="players-grid" id="player-container">
+            <script>
+                const container = document.getElementById('player-container');
+                const names = ["Player One", "Player Two", "Player Three", "Player Four", "Player Five", 
+                               "Player Six", "Player Seven", "Player Eight", "Player Nine", "Player Ten",
+                               "Player Eleven", "Player Twelve", "Player Thirteen", "Player Fourteen", "Player Fifteen"];
+                
+                for (let i = 0; i < 15; i++) {
+                    container.innerHTML += `
+                        <div class="player-card">
+                            <div class="player-img">
+                                <img src="https://via.placeholder.com/200x250.png?text=Player+${i+1}" alt="Player">
+                            </div>
+                            <div class="player-name">${names[i]}</div>
+                        </div>
+                    `;
+                }
+            </script>
         </div>
     </div>
 
     <footer>
-        Serabi Universe<br>
-        &copy; 2026
+        Serabi Universe &copy; 2026<br>
+        Inspirasi Desain dari Bakwan.id
     </footer>
 
 </body>
 </html>
+
