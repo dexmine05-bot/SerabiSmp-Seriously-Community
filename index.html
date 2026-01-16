@@ -149,45 +149,52 @@
         </div>
     </div>
 
-    <div class="players-section">
+<div class="players-section">
         <div class="section-bar">MEMBER SERABISMP</div>
         <div class="players-grid" id="player-container">
-            <script>
-                const container = document.getElementById('player-container');
-                const names = [
-                    "jaffa", "KupretKentut", "SingDC", "ghafahib", "skucing", 
-                    "voxcaz", "ocvanbyy", "Raze", "Leo", "Asfrimm", 
-                    "CreeperStar", "WillerCraft", "Dexter", "Erjet", "Ajam", 
-                    "Neogrand", "DiamondzMC", "Zoken", "Member 19", "Member 20"
-                ];
-                
-                for (let i = 0; i < 20; i++) {
-                    container.innerHTML += `
-<div class="players-section">
-        <div class="section-bar">MEMBERS</div>
-        <div class="players-grid" id="player-container">
-            <script>
-                const container = document.getElementById('player-container');
-                const names = [
-                    "jaffa", "KupretKentut", "SingDC", "ghafahib", "skucing", 
-                    "voxcaz", "ocvanbyy", "Raze", "Leo", "Asfrimm", 
-                    "CreeperStar", "WillerCraft", "Dexter", "Erjet", "Ajam", 
-                    "Neogrand", "DiamondzMC", "Zoken", "Member 19", "Member 20"
-                ];
-                
-                for (let i = 0; i < 20; i++) {
-                    container.innerHTML += `
-                        <div class="player-card">
-                            <div class="player-img">
-                                <img src="https://via.placeholder.com/250x300/eee/999?text=${names[i]}" alt="Player">
-                            </div>
-                            <div class="player-name">${names[i].toUpperCase()}</div>
-                        </div>
-                    `;
-                }
-            </script>
-        </div>
+            </div>
     </div>
+
+    <script>
+        // Gunakan satu script saja untuk semua member
+        const playerContainer = document.getElementById('player-container');
+
+        // DAFTAR DATA MEMBER (Pastikan link diakhiri .png atau .jpg)
+        const members = [
+            { name: "jaffa", img: "https://link-foto-jaffa.com/foto.png" },
+            { name: "KupretKentut", img: "https://cdn.discordapp.com/attachments/1455764711176929407/1461609544617693380/Kupret.png?ex=696b2d76&is=6969dbf6&hm=1b68c5d9aa05ded87722d5d41e9bd6692687dcc84c9b9bacd879517f99257446&" },
+            { name: "SingDC", img: "https://link-foto-singdc.com/foto.png" },
+            { name: "ghafahib", img: "https://link-foto-ghafahib.com/foto.png" },
+            { name: "skucing", img: "https://link-foto-skucing.com/foto.png" },
+            { name: "voxcaz", img: "https://link-foto-voxcaz.com/foto.png" },
+            { name: "ocvanbyy", img: "https://link-foto-ocvanbyy.com/foto.png" },
+            { name: "Raze", img: "https://link-foto-raze.com/foto.png" },
+            { name: "Leo", img: "https://link-foto-leo.com/foto.png" },
+            { name: "Asfrimm", img: "https://link-foto-asfrimm.com/foto.png" },
+            { name: "CreeperStar", img: "https://link-foto-creeper.com/foto.png" },
+            { name: "WillerCraft", img: "https://link-foto-willer.com/foto.png" },
+            { name: "Dexter", img: "https://link-foto-dexter.com/foto.png" },
+            { name: "Erjet", img: "https://link-foto-erjet.com/foto.png" },
+            { name: "Ajam", img: "https://link-foto-ajam.com/foto.png" },
+            { name: "Neogrand", img: "https://link-foto-neogrand.com/foto.png" },
+            { name: "DiamondzMC", img: "https://link-foto-diamondz.com/foto.png" },
+            { name: "Zoken", img: "https://link-foto-zoken.com/foto.png" },
+            { name: "Member 19", img: "https://link-foto-19.com/foto.png" },
+            { name: "Member 20", img: "https://link-foto-20.com/foto.png" }
+        ];
+
+        // Loop untuk memunculkan card
+        members.forEach(member => {
+            playerContainer.innerHTML += `
+                <div class="player-card">
+                    <div class="player-img">
+                        <img src="${member.img}" alt="${member.name}" onerror="this.src='https://via.placeholder.com/250x300?text=Error+Link'">
+                    </div>
+                    <div class="player-name">${member.name.toUpperCase()}</div>
+                </div>
+            `;
+        });
+    </script>
 
     <footer>
         <strong>Serabi Seriously Community</strong> &copy; 2026<br>
