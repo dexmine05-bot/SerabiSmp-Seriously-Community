@@ -163,32 +163,38 @@
                 
                 for (let i = 0; i < 20; i++) {
                     container.innerHTML += `
-                        <script>
-    const container = document.getElementById('player-container');
+<div class="players-section">
+    <div class="section-bar">PLAYERS</div>
+    <div class="players-grid" id="player-container">
+        </div>
+</div>
 
+<script>
+    // 1. DAFTAR DATA MEMBER
+    // GANTI "LINK_DARI_POSTIMAGES" dengan link yang kamu dapat dari Postimages tadi
     const members = [
-        { 
-            name: "KupretKentut", 
-            img: "https://cdn.discordapp.com/attachments/1455764711176929407/1461609544617693380/Kupret.png?ex=696b2d76&is=6969dbf6&hm=1b68c5d9aa05ded87722d5d41e9bd6692687dcc84c9b9bacd879517f99257446&" 
-        },
-        // Tambahkan member lainnya di sini...
+        { name: "Jaffa", img: "https://i.postimg.cc/xxxxxx/jaffa.png" },
+        { name: "KupretKentut", img: "https://cdn.discordapp.com/attachments/1455764711176929407/1461609544617693380/Kupret.png?ex=696b2d76&is=6969dbf6&hm=1b68c5d9aa05ded87722d5d41e9bd6692687dcc84c9b9bacd879517f99257446&" },
+        { name: "SingDC", img: "https://i.postimg.cc/zzzzzz/singdc.png" },
+        // ... teruskan sampai 20 member
     ];
 
+    const container = document.getElementById('player-container');
+
+    // 2. FUNGSI UNTUK MEMUNCULKAN FOTO
     if (container) {
         members.forEach(member => {
-            container.innerHTML += `
-                <div class="player-card">
-                    <div class="player-img">
-                        <img src="${member.img}" 
-                             alt="${member.name}" 
-                             onerror="this.onerror=null;this.src='https://via.placeholder.com/250x300?text=Link+Foto+Mati';">
-                    </div>
-                    <div class="player-name">${member.name.toUpperCase()}</div>
+            const card = document.createElement('div');
+            card.className = 'player-card';
+            card.innerHTML = `
+                <div class="player-img">
+                    <img src="${member.img}" alt="${member.name}" 
+                         onerror="this.src='https://via.placeholder.com/250x300?text=Ganti+Link+Postimage'">
                 </div>
+                <div class="player-name">${member.name.toUpperCase()}</div>
             `;
+            container.appendChild(card);
         });
-    } else {
-        console.error("Kotak 'player-container' tidak ditemukan!");
     }
 </script>
                     `;
