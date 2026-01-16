@@ -6,11 +6,13 @@
     <title>SerabiSMP | Official Website</title>
     <style>
         :root {
-            --primary: #e67e22;
+            --primary: #2980b9; /* Biru Premium */
             --dark: #1a1a1a;
             --light: #f4f4f4;
             --white: #ffffff;
         }
+
+        html { scroll-behavior: smooth; } /* Biar pas dipencet menunya meluncur halus */
 
         body {
             margin: 0;
@@ -19,8 +21,7 @@
             color: #333;
         }
 
-        /* Top Bar & Nav */
-        .top-orange { background: var(--primary); height: 10px; width: 100%; }
+        .top-bar { background: var(--primary); height: 10px; width: 100%; }
         
         nav {
             display: flex; justify-content: space-between; align-items: center;
@@ -31,7 +32,6 @@
         .menu a { margin-left: 25px; text-decoration: none; color: var(--dark); font-size: 13px; font-weight: 800; transition: 0.3s; }
         .menu a:hover { color: var(--primary); }
 
-        /* Hero Section */
         .hero { display: flex; flex-wrap: wrap; padding: 80px 10%; align-items: center; background: #fff; gap: 40px; }
         .hero-img { flex: 1; text-align: center; }
         .hero-img img { max-width: 350px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
@@ -39,95 +39,76 @@
         .hero-text h1 { color: var(--primary); font-size: 3.5rem; line-height: 1; margin-bottom: 20px; font-weight: 900; }
         .hero-text p { font-size: 1.2rem; color: #666; }
 
-        /* Featured Player (The One at the Top) */
-        .featured-player {
-            padding: 50px 10% 20px;
-            text-align: center;
-            background: #fdfdfd;
-        }
-        .leader-card {
-            max-width: 300px;
-            margin: 0 auto;
-            border: 3px solid var(--primary);
-            border-radius: 20px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 15px 35px rgba(230, 126, 34, 0.2);
-        }
-
-        /* Players Grid Section */
-        .players-section { padding: 40px 8%; text-align: center; }
         .section-bar { 
             background: var(--dark); color: white; padding: 15px; 
             font-size: 1.8rem; font-weight: 900; letter-spacing: 8px; 
-            margin-bottom: 50px; border-radius: 4px;
+            margin-bottom: 50px; border-radius: 4px; text-align: center;
         }
-        
+
+        .featured-player { padding: 80px 10% 20px; text-align: center; background: #fdfdfd; }
+        .leader-card {
+            max-width: 300px; margin: 0 auto; border: 3px solid var(--primary);
+            border-radius: 20px; overflow: hidden; background: white;
+            box-shadow: 0 15px 35px rgba(41, 128, 185, 0.2); cursor: pointer;
+        }
+
+        .players-section { padding: 80px 8%; text-align: center; }
         .players-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
             gap: 30px;
         }
 
         .player-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
+            background: white; border-radius: 15px; overflow: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid #eee;
-            position: relative;
+            border: 1px solid #eee; cursor: pointer;
         }
-
-        .player-card:hover { 
-            transform: translateY(-12px); 
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border-color: var(--primary);
-        }
-
-        .player-img { 
-            width: 100%; 
-            height: 280px; 
-            background: #f9f9f9;
-            overflow: hidden;
-        }
-        .player-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .player-card:hover .player-img img { scale: 1.1; }
-
-        .player-name { 
-            padding: 20px; font-weight: 800; font-size: 1.1rem;
-            background: white; color: var(--dark);
-            border-top: 1px solid #eee;
-        }
+        .player-card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .player-img { width: 100%; height: 280px; background: #f9f9f9; overflow: hidden; }
+        .player-img img { width: 100%; height: 100%; object-fit: cover; }
+        .player-name { padding: 20px; font-weight: 800; font-size: 1.1rem; background: white; color: var(--dark); border-top: 1px solid #eee; }
         .player-card:hover .player-name { background: var(--primary); color: white; }
 
-        /* Marquee */
-        .running-text { background: var(--primary); color: white; padding: 12px 0; font-weight: bold; font-size: 1.1rem; }
+        .running-text { background: var(--primary); color: white; padding: 12px 0; font-weight: bold; }
 
-        footer { text-align: center; padding: 50px; background: #1a1a1a; color: #666; font-size: 14px; margin-top: 50px; }
-        footer strong { color: var(--primary); }
-
-        @media (max-width: 768px) {
-            .hero-text h1 { font-size: 2.5rem; }
-            .hero { padding: 40px 5%; text-align: center; }
+        /* MODAL STYLE (Fitur Zoom & Penjelasan) */
+        .modal {
+            display: none; position: fixed; z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); align-items: center; justify-content: center;
+            backdrop-filter: blur(5px);
         }
+        .modal-content {
+            background: white; padding: 40px; border-radius: 30px;
+            max-width: 450px; width: 90%; text-align: center;
+            position: relative; animation: zoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .modal-img { width: 200px; height: 200px; border-radius: 20px; object-fit: cover; border: 5px solid var(--primary); margin-bottom: 20px; }
+        .modal-name { font-size: 2rem; font-weight: 900; color: var(--primary); margin: 10px 0; }
+        .modal-bio { font-size: 1.1rem; color: #555; line-height: 1.6; }
+        .close-btn { margin-top: 25px; background: var(--dark); color: white; border: none; padding: 12px 30px; border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .close-btn:hover { background: var(--primary); }
+
+        footer { text-align: center; padding: 50px; background: #1a1a1a; color: #666; }
     </style>
 </head>
 <body>
 
-    <div class="top-orange"></div>
+    <div class="top-bar"></div>
     <nav>
-        <div class="logo">SERABISeriouslyComunity<span style="color:#333">.</span></div>
+        <div class="logo">SERABISeriouslyComunity<span style="color:var(--primary)">.</span></div>
         <div class="menu">
             <a href="#">HOME</a>
-            <a href="#">ABOUT</a>
-            <a href="#">TEAM</a>
-            <a href="#">PLAYERS</a>
+            <a href="#about">ABOUT</a>
+            <a href="#team">TEAM</a>
+            <a href="#players">PLAYERS</a>
         </div>
     </nav>
 
-    <div class="hero">
+    <div class="hero" id="about">
         <div class="hero-img">
-            <img src="https://cdn.discordapp.com/attachments/1388342161254252695/1455748239658848459/1766964628962.png?ex=696af2b2&is=6969a132&hm=a391b66be7b98ff9bebe9be10a6828c0e4755ebd30cfc7b434d6d048eebfb659&" alt="Mascot">
+            <img src="https://cdn.discordapp.com/attachments/1388342161254252695/1455748239658848459/1766964628962.png" alt="Mascot">
         </div>
         <div class="hero-text">
             <h1>SERABI<br>SMP</h1>
@@ -136,64 +117,83 @@
     </div>
 
     <div class="running-text">
-        <marquee scrollamount="12">Ikuti Terus Keseruan Kami DI Channel Youtube : SerabiComunity</marquee>
+        <marquee scrollamount="12">Ikuti Terus Keseruan Kami DI Channel Youtube : SerabiComunity • Support Server Kami • SerabiSMP Season 2 •</marquee>
     </div>
 
-    <div class="featured-player">
+    <div class="featured-player" id="team">
         <div class="section-bar" style="background: var(--primary);">Owner Ganteng</div>
-        <div class="leader-card">
+        <div class="leader-card" onclick="showDetail('DEXMC', 'https://cdn.discordapp.com/attachments/1413036583761875016/1459821928020836535/pose_1.png', 'Founder sekaligus otak dibalik SerabiSMP. Suka membangun sistem yang kompleks tapi tetap ganteng.')">
             <div class="player-img">
-                <img src="https://cdn.discordapp.com/attachments/1413036583761875016/1459821928020836535/pose_1.png?ex=696a9b5d&is=696949dd&hm=154af59805843be9f7124dfae45e94f0053ff1103168b4c55bd2cbbeca916961&" alt="Founder">
+                <img src="https://cdn.discordapp.com/attachments/1413036583761875016/1459821928020836535/pose_1.png" alt="Founder">
             </div>
             <div class="player-name">DEXMC</div>
         </div>
     </div>
 
-<div class="players-section">
+    <div class="players-section" id="players">
         <div class="section-bar">MEMBER SERABISMP</div>
-        <div class="players-grid" id="player-container">
-            </div>
+        <div class="players-grid" id="player-container"></div>
+    </div>
+
+    <div id="playerModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <img id="modalImg" class="modal-img" src="" alt="Player">
+            <div id="modalName" class="modal-name"></div>
+            <div id="modalBio" class="modal-bio"></div>
+            <button class="close-btn" onclick="closeModal()">TUTUP</button>
+        </div>
     </div>
 
     <script>
-        // Gunakan satu script saja untuk semua member
         const playerContainer = document.getElementById('player-container');
 
-        // DAFTAR DATA MEMBER (Pastikan link diakhiri .png atau .jpg)
+        // DAFTAR DATA MEMBER + PENJELASAN (BIO)
         const members = [
-            { name: "jaffa", img: "https://link-foto-jaffa.com/foto.png" },
-            { name: "KupretKentut", img: "https://cdn.discordapp.com/attachments/1455764711176929407/1461609544617693380/Kupret.png?ex=696b2d76&is=6969dbf6&hm=1b68c5d9aa05ded87722d5d41e9bd6692687dcc84c9b9bacd879517f99257446&" },
-            { name: "SingDC", img: "https://link-foto-singdc.com/foto.png" },
-            { name: "ghafahib", img: "https://link-foto-ghafahib.com/foto.png" },
-            { name: "skucing", img: "https://link-foto-skucing.com/foto.png" },
-            { name: "voxcaz", img: "https://link-foto-voxcaz.com/foto.png" },
-            { name: "ocvanbyy", img: "https://link-foto-ocvanbyy.com/foto.png" },
-            { name: "Raze", img: "https://link-foto-raze.com/foto.png" },
-            { name: "Leo", img: "https://link-foto-leo.com/foto.png" },
-            { name: "Asfrimm", img: "https://link-foto-asfrimm.com/foto.png" },
-            { name: "CreeperStar", img: "https://link-foto-creeper.com/foto.png" },
-            { name: "WillerCraft", img: "https://link-foto-willer.com/foto.png" },
-            { name: "Dexter", img: "https://link-foto-dexter.com/foto.png" },
-            { name: "Erjet", img: "https://link-foto-erjet.com/foto.png" },
-            { name: "Ajam", img: "https://link-foto-ajam.com/foto.png" },
-            { name: "Neogrand", img: "https://link-foto-neogrand.com/foto.png" },
-            { name: "DiamondzMC", img: "https://link-foto-diamondz.com/foto.png" },
-            { name: "Zoken", img: "https://link-foto-zoken.com/foto.png" },
-            { name: "Member 19", img: "https://link-foto-19.com/foto.png" },
-            { name: "Member 20", img: "https://link-foto-20.com/foto.png" }
+            { name: "jaffa", img: "https://link-foto-jaffa.com/foto.png", bio: "Member setia yang hobi eksplorasi map." },
+            { name: "KupretKentut", img: "https://cdn.discordapp.com/attachments/1455764711176929407/1461609544617693380/Kupret.png", bio: "Si raja lawak dan ahli dekorasi base." },
+            { name: "SingDC", img: "https://link-foto-singdc.com/foto.png", bio: "Petarung handal yang selalu siap PVP." },
+            { name: "ghafahib", img: "https://link-foto-ghafahib.com/foto.png", bio: "Arsitek bangunan modern di SerabiSMP." },
+            { name: "skucing", img: "https://link-foto-skucing.com/foto.png", bio: "Kolektor item langka dan trader sukses." },
+            { name: "voxcaz", img: "https://link-foto-voxcaz.com/foto.png", bio: "Suka membantu member baru beradaptasi." },
+            { name: "ocvanbyy", img: "https://link-foto-ocvanbyy.com/foto.png", bio: "Penjaga kedamaian server." },
+            { name: "Raze", img: "https://link-foto-raze.com/foto.png", bio: "Pemain pro yang jago parkour." },
+            { name: "Leo", img: "https://link-foto-leo.com/foto.png", bio: "Selalu punya ide kreatif buat event." },
+            { name: "Asfrimm", img: "https://link-foto-asfrimm.com/foto.png", bio: "Master farm otomatis di server." },
+            { name: "CreeperStar", img: "https://link-foto-creeper.com/foto.png", bio: "Hati-hati, dia suka meledak (bercanda)!" },
+            { name: "WillerCraft", img: "https://link-foto-willer.com/foto.png", bio: "Pecinta mining sampai ke bedrock." },
+            { name: "Dexter", img: "https://link-foto-dexter.com/foto.png", bio: "Sahabat baik semua warga Serabi." },
+            { name: "Erjet", img: "https://link-foto-erjet.com/foto.png", bio: "Member paling tenang tapi mematikan." },
+            { name: "Ajam", img: "https://link-foto-ajam.com/foto.png", bio: "Si tukang masak handal di server." },
+            { name: "Neogrand", img: "https://link-foto-neogrand.com/foto.png", bio: "Eksplorer laut yang tak kenal takut." },
+            { name: "DiamondzMC", img: "https://link-foto-diamondz.com/foto.png", bio: "Sesuai namanya, dia kaya akan diamond." },
+            { name: "Zoken", img: "https://link-foto-zoken.com/foto.png", bio: "Pemain paling misterius di SerabiSMP." },
+            { name: "Member 19", img: "https://via.placeholder.com/250x300", bio: "Calon legenda baru SerabiSMP." },
+            { name: "Member 20", img: "https://via.placeholder.com/250x300", bio: "Siap berpetualang bersama kalian semua." }
         ];
 
-        // Loop untuk memunculkan card
-        members.forEach(member => {
+        // Loop munculin member
+        members.forEach(m => {
             playerContainer.innerHTML += `
-                <div class="player-card">
+                <div class="player-card" onclick="showDetail('${m.name}', '${m.img}', '${m.bio}')">
                     <div class="player-img">
-                        <img src="${member.img}" alt="${member.name}" onerror="this.src='https://via.placeholder.com/250x300?text=Error+Link'">
+                        <img src="${m.img}" alt="${m.name}" onerror="this.src='https://via.placeholder.com/250x300?text=No+Photo'">
                     </div>
-                    <div class="player-name">${member.name.toUpperCase()}</div>
+                    <div class="player-name">${m.name.toUpperCase()}</div>
                 </div>
             `;
         });
+
+        // FUNGSI MODAL ZOOM & BIO
+        function showDetail(name, img, bio) {
+            document.getElementById('modalImg').src = img;
+            document.getElementById('modalName').innerText = name.toUpperCase();
+            document.getElementById('modalBio').innerText = bio;
+            document.getElementById('playerModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('playerModal').style.display = 'none';
+        }
     </script>
 
     <footer>
