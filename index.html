@@ -13,88 +13,132 @@
         }
 
         html { scroll-behavior: smooth; }
-        body { margin: 0; font-family: 'Segoe UI', Roboto, sans-serif; background-color: #f8f8f8; color: #333; }
 
-        /* TOP INFO BAR - MIRIP BAKWAN.ID */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--white);
+            color: #333;
+        }
+
+        /* --- TOP INFO BAR (Bakwan Style) --- */
         .top-info-bar {
             background: var(--primary);
             color: white;
-            padding: 12px 10%;
+            padding: 10px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
         }
-        .top-info-left { display: flex; gap: 25px; align-items: center; }
-        .top-info-left div { display: flex; align-items: center; gap: 8px; }
-        .top-info-right { display: flex; gap: 20px; font-size: 18px; }
-        .top-info-right a { color: white; text-decoration: none; transition: 0.3s; }
+        .top-info-left { display: flex; gap: 20px; }
+        .top-info-right { display: flex; gap: 15px; font-size: 14px; }
+        .top-info-right a { color: white; text-decoration: none; }
 
-        /* NAVBAR */
+        /* --- NAVBAR --- */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: white; position: sticky; top: 0; z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            margin: 10px 5%; border-radius: 15px;
+            padding: 15px 10%; background: white; position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin: 10px 5%; border-radius: 10px;
         }
-        .logo { font-size: 24px; color: #333; font-weight: 900; }
+        .logo { font-size: 22px; color: #333; font-weight: 900; }
         .logo span { color: var(--primary); }
-        .menu a { margin-left: 20px; text-decoration: none; color: #333; font-size: 14px; font-weight: 800; }
+        .menu a { margin-left: 20px; text-decoration: none; color: # dark; font-size: 13px; font-weight: 800; transition: 0.3s; }
+        .menu a:hover { color: var(--primary); }
 
-        /* PLAYER CARDS */
+        /* --- HERO --- */
+        .hero { display: flex; flex-wrap: wrap; padding: 60px 10%; align-items: center; gap: 40px; }
+        .hero-img img { max-width: 300px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+        .hero-text h1 { color: var(--primary); font-size: 3rem; margin-bottom: 10px; font-weight: 900; }
+
+        /* --- RUNNING TEXT --- */
+        .running-text { background: #333; color: white; padding: 10px 0; font-weight: bold; }
+
+        /* --- SECTION BAR --- */
+        .section-bar { 
+            background: var(--primary); color: white; padding: 12px; 
+            font-size: 1.5rem; font-weight: 900; letter-spacing: 5px; 
+            margin: 40px 10%; border-radius: 8px; text-align: center;
+        }
+
+        /* --- OWNER CARD --- */
+        .leader-card {
+            max-width: 280px; margin: 0 auto; border: 4px solid var(--primary);
+            border-radius: 20px; overflow: hidden; background: white;
+            transition: 0.3s; cursor: pointer;
+        }
+        .leader-card:hover { transform: scale(1.05); }
+
+        /* --- PLAYER GRID & ANTI GEPENG --- */
+        .players-section { padding: 40px 10%; }
+        .players-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+        }
+        .player-card {
+            background: white; border-radius: 15px; overflow: hidden;
+            border: 1px solid #eee; cursor: pointer; transition: 0.3s;
+        }
+        .player-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+
+        /* FITUR ANTI GEPENG */
         .player-img { 
             width: 100%; 
             height: 250px; 
-            background: #eee; 
-            display: flex; 
-            align-items: center; 
+            background: #fdfdfd; 
+            overflow: hidden; 
+            display: flex;
+            align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
         .player-img img { 
             max-width: 100%; 
             max-height: 100%; 
-            object-fit: contain; /* ANTI PEYANG */
+            object-fit: contain; /* INI BIAR GAK GEPENG */
         }
 
-        /* MODAL ZOOM */
+        .player-name { padding: 15px; font-weight: 800; text-align: center; color: #333; border-top: 1px solid #eee; }
+        .player-card:hover .player-name { background: var(--primary); color: white; }
+
+        /* --- MODAL ZOOM & ANTI GEPENG --- */
         .modal {
             display: none; position: fixed; z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); align-items: center; justify-content: center;
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.8); align-items: center; justify-content: center;
+            backdrop-filter: blur(8px);
         }
         .modal-content {
-            background: white; padding: 40px; border-radius: 30px;
-            max-width: 450px; width: 90%; text-align: center;
+            background: white; padding: 30px; border-radius: 25px;
+            max-width: 400px; width: 85%; text-align: center;
+            animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn { from { transform: scale(0.7); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        
+        .modal-img-container {
+            width: 200px; height: 200px; margin: 0 auto 15px;
+            border: 4px solid var(--primary); border-radius: 20px;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
         .modal-img { 
-            width: 250px; height: 250px; 
-            object-fit: contain; /* ANTI PEYANG */
-            border: 5px solid var(--primary); border-radius: 20px; margin-bottom: 20px;
+            max-width: 100%; max-height: 100%; 
+            object-fit: contain; /* INI BIAR ZOOM GAK GEPENG */
         }
 
-        /* Gaya lainnya tetap sama seperti sebelumnya... */
-        .section-bar { background: var(--primary); color: white; padding: 15px; font-size: 1.5rem; font-weight: 900; margin: 40px 10%; border-radius: 10px; text-align: center; }
-        .players-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; padding: 0 10%; }
-        .player-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); cursor: pointer; transition: 0.3s; }
-        .player-card:hover { transform: translateY(-10px); }
-        .player-name { padding: 15px; text-align: center; font-weight: 900; }
-        .close-btn { background: var(--primary); color: white; border: none; padding: 12px 40px; border-radius: 50px; font-weight: bold; cursor: pointer; margin-top: 20px; }
+        .close-btn { margin-top: 20px; background: var(--primary); color: white; border: none; padding: 10px 25px; border-radius: 50px; cursor: pointer; font-weight: bold; }
+
+        footer { text-align: center; padding: 40px; background: #1a1a1a; color: #666; font-size: 13px; margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <div class="top-info-bar">
         <div class="top-info-left">
-            <div><i class="fa-solid fa-location-dot"></i> TANGERANG, BANTEN</div>
-            <div style="border-left: 2px solid rgba(255,255,255,0.3); height: 20px; padding-left: 15px;">
-                <i class="fa-solid fa-envelope"></i> media@serabismp.id
-            </div>
+            <span><i class="fa-solid fa-location-dot"></i> TANGERANG, BANTEN</span>
+            <span><i class="fa-solid fa-envelope"></i> media@serabismp.id</span>
         </div>
         <div class="top-info-right">
-            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
             <a href="#"><i class="fa-brands fa-youtube"></i></a>
         </div>
@@ -110,31 +154,73 @@
         </div>
     </nav>
 
-    <div class="section-bar" id="players">MEMBER SERABISMP</div>
-    <div class="players-grid" id="player-container"></div>
+    <div class="hero" id="about">
+        <div class="hero-img">
+            <img src="https://cdn.discordapp.com/attachments/1388342161254252695/1455748239658848459/1766964628962.png" alt="Mascot">
+        </div>
+        <div class="hero-text">
+            <h1>SERABI<span>SMP</span></h1>
+            <p>Eksplorasi kreativitas tanpa batas di server Minecraft Roleplay paling solid.</p>
+        </div>
+    </div>
+
+    <div class="running-text">
+        <marquee scrollamount="10">JOIN SERABI COMMUNITY • CREATIVE ROLEPLAY • SEASON 2 SOON •</marquee>
+    </div>
+
+    <div class="section-bar" id="team">OWNER GANTENG</div>
+    <div class="leader-card" onclick="showDetail('DEXMC', 'https://cdn.discordapp.com/attachments/1413036583761875016/1459821928020836535/pose_1.png', 'The Founder of SerabiSMP.')">
+        <div class="player-img">
+            <img src="https://cdn.discordapp.com/attachments/1413036583761875016/1459821928020836535/pose_1.png" alt="Owner">
+        </div>
+        <div class="player-name">DEXMC</div>
+    </div>
+
+    <div class="players-section" id="players">
+        <div class="section-bar">MEMBER SERABISMP</div>
+        <div class="players-grid" id="player-container"></div>
+    </div>
 
     <div id="playerModal" class="modal" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <img id="modalImg" class="modal-img" src="">
-            <h2 id="modalName" style="color:var(--primary);"></h2>
-            <p id="modalBio" style="color:#666;"></p>
+            <div class="modal-img-container">
+                <img id="modalImg" class="modal-img" src="">
+            </div>
+            <h2 id="modalName" style="color:var(--primary); margin: 5px 0;"></h2>
+            <p id="modalBio" style="color:#777;"></p>
             <button class="close-btn" onclick="closeModal()">CLOSE</button>
         </div>
     </div>
 
     <script>
-        // Masukkan JavaScript members kamu di sini seperti sebelumnya
         const playerContainer = document.getElementById('player-container');
         const members = [
-            { name: "DEXMC", img: "https://cdn.discordapp.com/attachments/1413036583761875016/1459821928020836535/pose_1.png", bio: "The Founder of SerabiSMP." },
-            { name: "KupretKentut", img: "https://cdn.discordapp.com/attachments/1455764711176929407/1461609544617693380/Kupret.png", bio: "Member SerabiSMP" },
-            // ... (tambah yang lain)
+            { name: "jaffa", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "KupretKentut", img: "https://cdn.discordapp.com/attachments/1455764711176929407/1461609544617693380/Kupret.png", bio: "Ahli Redstone di SerabiSMP" },
+            { name: "SingDC", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "ghafahib", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "skucing", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "voxcaz", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "ocvanbyy", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Raze", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Leo", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Asfrimm", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "CreeperStar", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "WillerCraft", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Dexter", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Erjet", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Ajam", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Neogrand", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "DiamondzMC", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Zoken", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Member 19", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" },
+            { name: "Member 20", img: "https://via.placeholder.com/250x300", bio: "Member SerabiSMP" }
         ];
 
         members.forEach(m => {
             playerContainer.innerHTML += `
                 <div class="player-card" onclick="showDetail('${m.name}', '${m.img}', '${m.bio}')">
-                    <div class="player-img"><img src="${m.img}" onerror="this.src='https://via.placeholder.com/250x300?text=Error'"></div>
+                    <div class="player-img"><img src="${m.img}" onerror="this.src='https://via.placeholder.com/250x300?text=No+Photo'"></div>
                     <div class="player-name">${m.name.toUpperCase()}</div>
                 </div>
             `;
@@ -148,5 +234,11 @@
         }
         function closeModal() { document.getElementById('playerModal').style.display = 'none'; }
     </script>
+
+    <footer>
+        <strong>Serabi Seriously Community</strong> &copy; 2026<br>
+        Crafted with Passion for Minecraft Indonesia
+    </footer>
+
 </body>
 </html>
