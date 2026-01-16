@@ -5,73 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SerabiSMP | Official Website</title>
     <style>
+        :root {
+            --primary: #e67e22;
+            --dark: #1a1a1a;
+            --light: #f4f4f4;
+            --white: #ffffff;
+        }
+
         body {
             margin: 0;
-            font-family: 'Arial Black', Gadget, sans-serif;
-            background-color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--white);
             color: #333;
-            line-height: 1.6;
         }
 
-        /* Navigasi & Header */
-        .top-orange { background: #e67e22; height: 35px; width: 100%; }
+        /* Top Bar & Nav */
+        .top-orange { background: var(--primary); height: 10px; width: 100%; }
+        
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: white; position: sticky; top: 0; z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px 8%; background: white; position: sticky; top: 0; z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
-        .logo { font-size: 24px; color: #e67e22; font-weight: bold; }
-        .menu a { margin-left: 20px; text-decoration: none; color: #333; font-size: 14px; font-weight: bold; }
+        .logo { font-size: 26px; color: var(--primary); font-weight: 900; letter-spacing: -1px; }
+        .menu a { margin-left: 25px; text-decoration: none; color: var(--dark); font-size: 13px; font-weight: 800; transition: 0.3s; }
+        .menu a:hover { color: var(--primary); }
 
-        /* Hero & About Section */
-        .hero { display: flex; flex-wrap: wrap; padding: 50px 10%; align-items: center; background: #fff; }
+        /* Hero Section */
+        .hero { display: flex; flex-wrap: wrap; padding: 80px 10%; align-items: center; background: #fff; gap: 40px; }
         .hero-img { flex: 1; text-align: center; }
-        .hero-img img { max-width: 80%; border-radius: 20px; }
-        .hero-text { flex: 1; padding: 20px; }
-        .hero-text h1 { color: #e67e22; font-size: 2.5rem; margin-bottom: 10px; }
+        .hero-img img { max-width: 350px; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); }
+        .hero-text { flex: 1; }
+        .hero-text h1 { color: var(--primary); font-size: 3.5rem; line-height: 1; margin-bottom: 20px; font-weight: 900; }
+        .hero-text p { font-size: 1.2rem; color: #666; }
 
-        .about-box { padding: 60px 10%; background: #f9f9f9; text-align: center; }
-        .about-box h2 { font-size: 2rem; border-bottom: 4px solid #e67e22; display: inline-block; margin-bottom: 20px; }
-        .about-content { max-width: 800px; margin: 0 auto; font-family: 'Arial', sans-serif; font-size: 1.1rem; }
+        /* Featured Player (The One at the Top) */
+        .featured-player {
+            padding: 50px 10% 20px;
+            text-align: center;
+            background: #fdfdfd;
+        }
+        .leader-card {
+            max-width: 300px;
+            margin: 0 auto;
+            border: 3px solid var(--primary);
+            border-radius: 20px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 15px 35px rgba(230, 126, 34, 0.2);
+        }
 
-        /* Players Section */
-        .players-section { padding: 50px 5%; background: #fff; text-align: center; }
-        .section-bar { background: #333; color: white; padding: 10px; font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 40px; }
+        /* Players Grid Section */
+        .players-section { padding: 40px 8%; text-align: center; }
+        .section-bar { 
+            background: var(--dark); color: white; padding: 15px; 
+            font-size: 1.8rem; font-weight: 900; letter-spacing: 8px; 
+            margin-bottom: 50px; border-radius: 4px;
+        }
         
         .players-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 25px;
-            padding: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
         }
 
         .player-card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 10px;
+            background: white;
+            border-radius: 15px;
             overflow: hidden;
-            transition: 0.3s;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #eee;
+            position: relative;
         }
 
-        .player-card:hover { transform: translateY(-10px); border-color: #e67e22; }
-        .player-img { width: 100%; height: 200px; background: #eee; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .player-img img { width: 100%; height: 100%; object-fit: cover; }
-        .player-name { padding: 15px; font-weight: bold; background: #f4f4f4; color: #e67e22; }
+        .player-card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
 
-        /* Footer */
-        .running-text { background: #e67e22; color: white; padding: 10px 0; font-weight: bold; }
-        footer { text-align: center; padding: 30px; color: #888; border-top: 1px solid #eee; }
+        .player-img { 
+            width: 100%; 
+            height: 280px; 
+            background: #f9f9f9;
+            overflow: hidden;
+        }
+        .player-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .player-card:hover .player-img img { scale: 1.1; }
+
+        .player-name { 
+            padding: 20px; font-weight: 800; font-size: 1.1rem;
+            background: white; color: var(--dark);
+            border-top: 1px solid #eee;
+        }
+        .player-card:hover .player-name { background: var(--primary); color: white; }
+
+        /* Marquee */
+        .running-text { background: var(--primary); color: white; padding: 12px 0; font-weight: bold; font-size: 1.1rem; }
+
+        footer { text-align: center; padding: 50px; background: #1a1a1a; color: #666; font-size: 14px; margin-top: 50px; }
+        footer strong { color: var(--primary); }
+
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero { padding: 40px 5%; text-align: center; }
+        }
     </style>
 </head>
 <body>
 
     <div class="top-orange"></div>
     <nav>
-        <div class="logo">SerabiSMP.Comunity</div>
+        <div class="logo">SERABISMP<span style="color:#333">.</span></div>
         <div class="menu">
             <a href="#">HOME</a>
-            <a href="#">CONTENT</a>
+            <a href="#">ABOUT</a>
             <a href="#">TEAM</a>
             <a href="#">PLAYERS</a>
         </div>
@@ -79,42 +127,47 @@
 
     <div class="hero">
         <div class="hero-img">
-            <img src="https://cdn.discordapp.com/attachments/1388342161254252695/1455002663509950634/1766964628962.png?ex=69683c53&is=6966ead3&hm=2e34936aef9ad804c74d0029c46127a830484f6abdbaeb337dcf76f204ce1d08&" alt="Mascot">
+            <img src="https://cdn.discordapp.com/attachments/1388342161254252695/1455002663509950634/1766964628962.png" alt="Mascot">
         </div>
         <div class="hero-text">
-            <h1>SELAMAT DATANG DI SERABISMP</h1>
-            <p>Di mana <strong>Persahabatan</strong> dan <strong>Petualangan</strong> Minecraft dimulai!</p>
-        </div>
-    </div>
-
-    <div class="about-box">
-        <h2>ABOUT SERVER</h2>
-        <div class="about-content">
-            <p>"SerabiSMP" adalah sebuah server Minecraft roleplay yang dibangun untuk menciptakan komunitas yang solid dan kreatif. Kami berfokus pada pengalaman bermain yang seru, menghargai setiap karya pemain, dan menjunjung tinggi sportivitas antar member. Jelajahi dunia kami dan jadilah bagian dari sejarah SerabiSeriouslyComunitty!</p>
+            <h1>SERABI<br>SMP.</h1>
+            <p>Eksplorasi kreativitas tanpa batas di server Minecraft Roleplay paling solid. <strong>Persahabatan, Cerita, dan Petualangan.</strong></p>
         </div>
     </div>
 
     <div class="running-text">
-        <marquee scrollamount="10">dexmc • jaffa • KupretKentut • SingDC • ghafahib • skucing • voxcaz • ocvanbyy • Raze • Leo • Asfrimm • CreeperStar • WillerCraft • Dexter • Erjet • Ajam • Neogrand • DiamondzMC • Zoken </marquee>
+        <marquee scrollamount="12">JOIN THE COMMUNITY • CREATE YOUR STORY • SERABISMP SEASON 2 IS COMING SOON • BE THE LEGEND •</marquee>
+    </div>
+
+    <div class="featured-player">
+        <div class="section-bar" style="background: var(--primary);">FOUNDER / LEADER</div>
+        <div class="leader-card">
+            <div class="player-img">
+                <img src="https://via.placeholder.com/300x400/e67e22/ffffff?text=FOUNDER" alt="Founder">
+            </div>
+            <div class="player-name">DEXMC</div>
+        </div>
     </div>
 
     <div class="players-section">
-        <div class="section-bar">PLAYERS</div>
+        <div class="section-bar">MEMBERS</div>
         <div class="players-grid" id="player-container">
             <script>
                 const container = document.getElementById('player-container');
-                const names = ["Player 1", "Player 2", "Player 3", "Player 4", "Player 5", 
-                               "Player 6", "Player 7", "Player 8", "Player 9", "Player 10",
-                               "Player 11", "Player 12", "Player 13", "Player 14", 
-                               "Player 15", "Player 16", "Player 17", "Player 18", "Player 19"];
+                const names = [
+                    "jaffa", "KupretKentut", "SingDC", "ghafahib", "skucing", 
+                    "voxcaz", "ocvanbyy", "Raze", "Leo", "Asfrimm", 
+                    "CreeperStar", "WillerCraft", "Dexter", "Erjet", "Ajam", 
+                    "Neogrand", "DiamondzMC", "Zoken", "Member 19", "Member 20"
+                ];
                 
-                for (let i = 0; i < 15; i++) {
+                for (let i = 0; i < 20; i++) {
                     container.innerHTML += `
                         <div class="player-card">
                             <div class="player-img">
-                                <img src="https://via.placeholder.com/200x250.png?text=Player+${i+1}" alt="Player">
+                                <img src="https://via.placeholder.com/250x300/eee/999?text=${names[i]}" alt="Player">
                             </div>
-                            <div class="player-name">${names[i]}</div>
+                            <div class="player-name">${names[i].toUpperCase()}</div>
                         </div>
                     `;
                 }
@@ -123,10 +176,9 @@
     </div>
 
     <footer>
-        Serabi Seriously Community &copy; 2026<br>
-        Inspirasi Desain dari Bakwan.id
+        <strong>Serabi Seriously Community</strong> &copy; 2026<br>
+        Crafted with Passion for Minecraft Indonesia
     </footer>
 
 </body>
 </html>
-
